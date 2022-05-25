@@ -12,12 +12,12 @@
     };
 
     custom_gcc-src = {
-      url = "github:antoyo/gcc";
+      url = "github:antoyo/gcc/6c00b2a3b02d67cdf009d248103e821d784f4ace";
       flake = false;
     };
 
     rustc_codegen_gcc-src = {
-      url = "github:rust-lang/rustc_codegen_gcc";
+      url = "github:rust-lang/rustc_codegen_gcc/e6dbecdff382691b9f072fedc7cf70cd8ab5a6a4";
       flake = false;
     };
   };

@@ -3,16 +3,17 @@
     "custom_gcc-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1648603511,
-        "narHash": "sha256-mLj/LyuVgVQM0b6hNTdmQYORa7hW5tcUNpZMP6txNUg=",
+        "lastModified": 1653428701,
+        "narHash": "sha256-tdlWeKiOeCgeNBy8Ux847rZ1Iw4qYUhJISnt+O8Wu/I=",
         "owner": "antoyo",
         "repo": "gcc",
-        "rev": "141e034e736dd375a1236d5bc0a5b9ba0c6a274c",
+        "rev": "6c00b2a3b02d67cdf009d248103e821d784f4ace",
         "type": "github"
       },
       "original": {
         "owner": "antoyo",
         "repo": "gcc",
+        "rev": "6c00b2a3b02d67cdf009d248103e821d784f4ace",
         "type": "github"
       }
     },
@@ -130,16 +131,17 @@
     "rustc_codegen_gcc-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1648736211,
-        "narHash": "sha256-W+u74WetA2CPGtYjdpeDauqbuWvLPQKbk5vrYIaoQFs=",
+        "lastModified": 1652624728,
+        "narHash": "sha256-vRblS+JwRXo/TCLCfIwbcuxxmj+HI7OBxj241I4iilg=",
         "owner": "rust-lang",
         "repo": "rustc_codegen_gcc",
-        "rev": "341b9f274bddcb912a6109c57ee236f3c9529649",
+        "rev": "e6dbecdff382691b9f072fedc7cf70cd8ab5a6a4",
         "type": "github"
       },
       "original": {
         "owner": "rust-lang",
         "repo": "rustc_codegen_gcc",
+        "rev": "e6dbecdff382691b9f072fedc7cf70cd8ab5a6a4",
         "type": "github"
       }
     }
