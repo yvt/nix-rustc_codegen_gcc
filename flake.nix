@@ -26,7 +26,11 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        fenixToolchain = fenix.packages.${system}.latest.withComponents [ "rustc" "cargo" "rustc-dev" ];
+        fenixToolchain' = fenix.packages.${system}.toolchainOf { 
+          date = "2022-03-26";
+          sha256 = "/GO6g+X5qEo4HIl/jTHG1S57fWil1C3/WSi/4ZwFPHU=";
+        };
+        fenixToolchain = fenixToolchain'.withComponents [ "rustc" "cargo" "rustc-dev" ];
         naersk-lib = naersk.lib."${system}".override {
           cargo = fenixToolchain;
           rustc = fenixToolchain;
