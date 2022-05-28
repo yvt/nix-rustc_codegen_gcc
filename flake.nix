@@ -35,27 +35,35 @@
           cargo = fenixToolchain;
           rustc = fenixToolchain;
         };
-        custom_gcc =
-          (import ./modules/gcc.nix) {
-            name = "rustc_codegen_gcc";
-            src = custom_gcc-src;
-            inherit (pkgs) gcc11 flex;
-          };
-      in
-        rec {
-          packages = {
-            # Host compiler
-            gcc = custom_gcc.cc;
-            libgccjit = custom_gcc.libgccjit;
-            librustc_codegen_gcc =
+        
+        rcgPackages = { pkgs, prefix ? "" }:
+          let
+            customGcc =
+              (import ./modules/gcc.nix) {
+                name = "rustc_codegen_gcc";
+                src = custom_gcc-src;
+                inherit (pkgs) gcc11 flex;
+              };
+          in
+          {
+            "${prefix}gcc" = customGcc.cc;
+            "${prefix}libgccjit" = customGcc.libgccjit;
+            "${prefix}librustc_codegen_gcc" =
               (import ./modules/rustc_codegen_gcc.nix) {
-                inherit (custom_gcc) libgccjit;
+                inherit (customGcc) libgccjit;
                 inherit (pkgs) stdenv;
                 inherit naersk-lib;
                 src = rustc_codegen_gcc-src;
               };
           };
 
-          defaultPackage = packages.librustc_codegen_gcc;
+      in
+        rec {
+          packages =
+            { default = packages.librustc_codegen_gcc; } //
+            (rcgPackages { inherit pkgs; }) //
+            (rcgPackages { 
+              prefix = "rx-embedded-"; 
+              pkgs = pkgs.pkgsCross.rx-embedded.buildPackages; });
         });
 }
