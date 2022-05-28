@@ -50,7 +50,7 @@
             librustc_codegen_gcc =
               (import ./modules/rustc_codegen_gcc.nix) {
                 inherit (custom_gcc) libgccjit;
-                inherit (pkgs) stdenv runCommand;
+                inherit (pkgs) stdenv;
                 inherit naersk-lib;
                 src = rustc_codegen_gcc-src;
               };
