@@ -108,7 +108,8 @@
         "flake-utils": "flake-utils",
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_2",
-        "rustc_codegen_gcc-src": "rustc_codegen_gcc-src"
+        "rustc_codegen_gcc-src": "rustc_codegen_gcc-src",
+        "rx-embedded-rustc_codegen_gcc-src": "rx-embedded-rustc_codegen_gcc-src"
       }
     },
     "rust-analyzer-src": {
@@ -142,6 +143,23 @@
         "owner": "rust-lang",
         "repo": "rustc_codegen_gcc",
         "rev": "e6dbecdff382691b9f072fedc7cf70cd8ab5a6a4",
+        "type": "github"
+      }
+    },
+    "rx-embedded-rustc_codegen_gcc-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650715808,
+        "narHash": "sha256-cokKgiDKTP7jBTUWX9eHE4lCnqNbOq4gf/qPLtEItjw=",
+        "owner": "yvt",
+        "repo": "rustc_codegen_gcc",
+        "rev": "d753e3fb84c670994a8e12349e3a832eb4d7d3e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yvt",
+        "repo": "rustc_codegen_gcc",
+        "rev": "d753e3fb84c670994a8e12349e3a832eb4d7d3e2",
         "type": "github"
       }
     }
