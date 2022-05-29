@@ -55,7 +55,7 @@
               (import ./modules/gcc.nix) {
                 name = "rustc_codegen_gcc";
                 src = custom_gcc-src;
-                inherit (pkgs) gcc11 flex;
+                inherit (pkgs) gcc11 flex wrapCC;
               };
           in
           {
