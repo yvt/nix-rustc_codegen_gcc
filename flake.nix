@@ -59,6 +59,7 @@
               };
           in
           {
+            "${prefix}binutils" = pkgs.binutils;
             "${prefix}gcc" = customGcc.cc;
             "${prefix}libgccjit" = customGcc.libgccjit;
             "${prefix}librustc_codegen_gcc" =
