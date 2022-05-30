@@ -22,7 +22,7 @@
     };
 
     rx-embedded-rustc_codegen_gcc-src = {
-      url = "github:yvt/rustc_codegen_gcc/d753e3fb84c670994a8e12349e3a832eb4d7d3e2";
+      url = "github:yvt/rustc_codegen_gcc/01b48b8bb9d1c53e51442ee6e064b9917b175584";
       flake = false;
     };
   };
