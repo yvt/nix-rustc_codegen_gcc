@@ -42,11 +42,12 @@
         
         rcgPackages = { 
           pkgs, prefix ? "", rustc_codegen_gcc-src, rustc_codegen_gcc-toolchain,
+          rustTargetTriple ? null,
         }:
           let
             fenixToolchain = 
               (fenix.packages.${system}.toolchainOf rustc_codegen_gcc-toolchain)
-              .withComponents [ "rustc" "cargo" "rustc-dev" ];
+              .withComponents [ "rustc" "cargo" "rustc-dev" "rust-src" ];
             naersk-lib = naersk.lib."${system}".override {
               cargo = fenixToolchain;
               rustc = fenixToolchain;
@@ -57,17 +58,25 @@
                 src = custom_gcc-src;
                 inherit (pkgs) gcc11 flex wrapCC;
               };
-          in
-          {
-            "${prefix}binutils" = pkgs.binutils;
-            "${prefix}gcc" = customGcc.cc;
-            "${prefix}libgccjit" = customGcc.libgccjit;
-            "${prefix}librustc_codegen_gcc" =
+            librustc_codegen_gcc = 
               (import ./modules/rustc_codegen_gcc.nix) {
                 inherit (customGcc) libgccjit;
                 inherit (pkgs) stdenv;
                 inherit naersk-lib;
                 src = rustc_codegen_gcc-src;
+              };
+          in
+          {
+            "${prefix}binutils" = pkgs.binutils;
+            "${prefix}gcc" = customGcc.cc;
+            "${prefix}libgccjit" = customGcc.libgccjit;
+            "${prefix}librustc_codegen_gcc" = librustc_codegen_gcc;
+            "${prefix}gcc-rustenv" = 
+              (import ./modules/gcc-rustenv.nix) {
+                inherit (pkgs) writeShellApplication binutils symlinkJoin;
+                inherit prefix librustc_codegen_gcc rustTargetTriple;
+                gcc = customGcc.gcc;
+                rustToolchain = fenixToolchain;
               };
           };
 
@@ -80,6 +89,7 @@
             }) //
             (rcgPackages { 
               prefix = "rx-embedded-"; 
+              rustTargetTriple = "rx-none-elf";
               rustc_codegen_gcc-src = rx-embedded-rustc_codegen_gcc-src;
               rustc_codegen_gcc-toolchain = {
                 date = "2022-03-30";
